@@ -69,8 +69,7 @@ async def account_login(bot: Client, m: Message):
            os.remove(x)
            return
     
-   
-        await editable.edit(f"Total links found are **{len(links)}**\n\nSend From where you want to download initial is **1**")
+   await editable.edit(f"Total Links **{len(links)}**\n\nLike **1**")
     input0: Message = await bot.listen(editable.chat.id)
     raw_text = input0.text
     await input0.delete(True)
@@ -81,7 +80,7 @@ async def account_login(bot: Client, m: Message):
     await input1.delete(True)
     
 
-    await editable.edit("**Enter resolution**")
+    await editable.edit("**Quality**")
     input2: Message = await bot.listen(editable.chat.id)
     raw_text2 = input2.text
     await input2.delete(True)
@@ -150,7 +149,7 @@ async def account_login(bot: Client, m: Message):
 
             elif '/master.mpd' in url:
              id =  url.split("/")[-2]
-             url =  "https://pwjarvis.onrender.com?v=" + id + "&quality=" + raw_text2
+             url =  "https://d26g5bnklkwsh4.cloudfront.net/" + id + "/master.m3u8"
                 
             name1 = links[i][0].replace("\t", "").replace(":", "").replace("/", "").replace("+", "").replace("#", "").replace("|", "").replace("@", "").replace("*", "").replace(".", "").replace("https", "").replace("http", "").strip()
             name = f'{str(count).zfill(3)}) {name1[:60]}'
@@ -206,7 +205,7 @@ async def account_login(bot: Client, m: Message):
 
             except Exception as e:
                 await m.reply_text(
-                    f"**downloading failed 🥺**\n{str(e)}\n**Name** - {name}\n**Link** - `{url}`"
+                    f"**downloading failed 🚫**\n{str(e)}\n**Name** - {name}\n**Link** - `{url}`"
                 )
                 continue
 
