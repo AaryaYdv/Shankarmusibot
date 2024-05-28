@@ -70,18 +70,18 @@ async def account_login(bot: Client, m: Message):
            return
     
    
-    await editable.edit(f"Total Links **{len(links)}**\n\nLike **1**")
+        await editable.edit(f"Total links found are **{len(links)}**\n\nSend From where you want to download initial is **1**")
     input0: Message = await bot.listen(editable.chat.id)
     raw_text = input0.text
     await input0.delete(True)
 
-    await editable.edit("**Batch Name**")
+    await editable.edit("**Enter Batch Name**")
     input1: Message = await bot.listen(editable.chat.id)
     raw_text0 = input1.text
     await input1.delete(True)
     
 
-    await editable.edit("**Quality**")
+    await editable.edit("**Enter resolution**")
     input2: Message = await bot.listen(editable.chat.id)
     raw_text2 = input2.text
     await input2.delete(True)
@@ -150,8 +150,8 @@ async def account_login(bot: Client, m: Message):
 
             elif '/master.mpd' in url:
              id =  url.split("/")[-2]
-             url =  "https://d26g5bnklkwsh4.cloudfront.net/" + id + "/master.m3u8"
-
+             url =  "https://pwjarvis.onrender.com?v=" + id + "&quality=" + raw_text2
+                
             name1 = links[i][0].replace("\t", "").replace(":", "").replace("/", "").replace("+", "").replace("#", "").replace("|", "").replace("@", "").replace("*", "").replace(".", "").replace("https", "").replace("http", "").strip()
             name = f'{str(count).zfill(3)}) {name1[:60]}'
 
@@ -197,7 +197,6 @@ async def account_login(bot: Client, m: Message):
                 else:
                     Show = f"**Downloading:-**\n\n**Name :-** `{name}\nQuality - {raw_text2}`\n\n**Url :-** `{url}`\n\n**𝐁𝐨𝐭 𝐌𝐚𝐝𝐞 𝐁𝐲  🔱☆ 𝐆𝐮𝐥𝐬𝐡𝐚𝐧 ☆🔱**"
                     prog = await m.reply_text(Show)
-                    prog = await m.reply_text(Show)
                     res_file = await helper.download_video(url, cmd, name)
                     filename = res_file
                     await prog.delete(True)
@@ -207,7 +206,7 @@ async def account_login(bot: Client, m: Message):
 
             except Exception as e:
                 await m.reply_text(
-                    f"**downloading failed 🚫**\n{str(e)}\n**Name** - {name}\n**Link** - `{url}`"
+                    f"**downloading failed 🥺**\n{str(e)}\n**Name** - {name}\n**Link** - `{url}`"
                 )
                 continue
 
